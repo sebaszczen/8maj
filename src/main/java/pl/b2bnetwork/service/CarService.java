@@ -1,7 +1,12 @@
 package pl.b2bnetwork.service;
 
-import org.springframework.stereotype.Service;
+import pl.b2bnetwork.domain.Car;
 
-@Service
-public class CarService {
+import java.util.List;
+
+public interface CarService {
+    List<Car> findAll();
+    Car findOne(Long id);
+    void save(Car car);
+    void delete(Long id);
 }
