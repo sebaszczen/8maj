@@ -23,9 +23,9 @@ public class EngineController {
         return "enginesList";
     }
 
-    @PostMapping(name = "/add")
-    public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    @PostMapping("/add")
+    public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "engineForm";
         } else {
             engineService.save(engine);
@@ -34,22 +34,21 @@ public class EngineController {
         }
     }
 
-    @GetMapping(name ="/add")
-    public String showForm(Model model){
+    @GetMapping(name = "/add")
+    public String showForm(Model model) {
         model.addAttribute("engine", new Engine());
         return "enginesList";
     }
 
-    @GetMapping(name = "/delete")
-    public String deleteEngine(Model model, @RequestParam Long id){
+    @GetMapping("/delete")
+    public String deleteEngine(Model model, @RequestParam Long id) {
         engineService.delete(id);
         model.addAttribute("engines", engineService.findAll());
         return "enginesList";
     }
 
-    @GetMapping(name = "/findone")
-    public String findOne(Model model, @RequestParam Long id){
-        engineService.findById(id);
+    @GetMapping("/findone")
+    public String findOne(Model model, @RequestParam Long id) {
         model.addAttribute("engines", engineService.findAll());
         return "enginesList";
     }

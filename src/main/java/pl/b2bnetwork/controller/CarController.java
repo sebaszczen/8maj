@@ -13,16 +13,17 @@ import javax.validation.Valid;
 @RequestMapping("/car")
 @Controller
 public class CarController {
+
     @Autowired
     private CarService carService;
 
-    @GetMapping(name = "findall")
+    @GetMapping("findall")
     public String findAll(Model model){
         model.addAttribute("cars", carService.findAll());
         return "carsList";
     }
 
-    @PostMapping(name = "/add")
+    @PostMapping("/add")
     public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "carFom";
@@ -33,23 +34,17 @@ public class CarController {
         }
     }
 
-    @GetMapping(name ="/add")
+    @GetMapping("/add")
     public String showForm(Model model){
         model.addAttribute("car", new Car());
         return "carsList";
     }
 
-    @GetMapping(name = "/delcar")
+    @GetMapping("/delcar")
     public String delCar(Model model, @RequestParam Long id){
         carService.delete(id);
         model.addAttribute("cars", carService.findAll());
         return "carsList";
     }
 
-    @GetMapping(name = "/findone")
-    public String findOne(Model model, @RequestParam Long id){
-        carService.findOne(id);
-        model.addAttribute("cars", carService.findAll());
-        return "carsList";
-    }
 }

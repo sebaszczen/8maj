@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Car list</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p></p>
+<div class="col-xs-3">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>Blossom</tr></thead>
+        <tbody class="tbody-light">
+        <tr th:each="car : ${cars}">
+            <td th:text="${car.id}"></td>
+            <td th:text="${bloss.model}"></td>
+            <td th:text="${bloss.velocity}"></td>
+        </tr></tbody>
+        <p></p>
+        <br>
+    </table>
+    <a href="/engine/engineForm"><button type="button" class="btn btn-dark">Submit another engine</button></a>
+    <a href="/part/partForm"><button type="button" class="btn btn-dark">Submit another part</button></a>
+</div>
+
+</body>
+</html>
