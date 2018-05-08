@@ -19,7 +19,7 @@ public class PartController {
 
     @GetMapping("/findall")
     public String findAll(Model model) {
-        model.addAttribute("model", partService.findAll());
+        model.addAttribute("parts", partService.findAll());
         return "partsList";
     }
 
@@ -29,7 +29,7 @@ public class PartController {
             return "partForm";
         } else {
             partService.save(part);
-            model.addAttribute("engines", partService.findAll());
+            model.addAttribute("parts", partService.findAll());
             return "partsList";
         }
     }
@@ -37,7 +37,7 @@ public class PartController {
     @GetMapping("/add")
     public String showForm(Model model) {
         model.addAttribute("part", new Part());
-        return "partsList";
+        return "partForm";
     }
 
     @GetMapping("/delete")
@@ -47,8 +47,8 @@ public class PartController {
         return "partsList";
     }
 
-    @GetMapping( "/findone")
-    public String findOne(Model model, @RequestParam Long id){
+    @GetMapping("/findone")
+    public String findOne(Model model, @RequestParam Long id) {
         model.addAttribute("parts", partService.findAll());
         return "partsList";
     }

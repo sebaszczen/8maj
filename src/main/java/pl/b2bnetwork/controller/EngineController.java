@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.b2bnetwork.domain.Engine;
+import pl.b2bnetwork.repository.PartRepository;
 import pl.b2bnetwork.service.EngineService;
 
 import javax.validation.Valid;
@@ -15,29 +16,33 @@ import javax.validation.Valid;
 public class EngineController {
 
     @Autowired
-    EngineService engineService;
+    private EngineService engineService;
+    @Autowired
+    private PartRepository partRepository;
 
     @GetMapping("/findall")
     public String findAll(Model model) {
-        model.addAttribute("model", engineService.findAll());
+        model.addAttribute("engines", engineService.findAll());
         return "enginesList";
     }
 
     @PostMapping("/add")
-    public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult) {
+    public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult,
+                            @RequestParam Long id) {
         if (bindingResult.hasErrors()) {
             return "engineForm";
         } else {
-            engineService.save(engine);
+            engineService.save(engine, id);
             model.addAttribute("engines", engineService.findAll());
             return "enginesList";
         }
     }
 
-    @GetMapping(name = "/add")
+    @GetMapping("/add")
     public String showForm(Model model) {
         model.addAttribute("engine", new Engine());
-        return "enginesList";
+        model.addAttribute("partsList", partRepository.findAll());
+        return "engineForm";
     }
 
     @GetMapping("/delete")
