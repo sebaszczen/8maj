@@ -24,4 +24,16 @@ public class Engine {
     private Set<Part> parts = new HashSet<>();
     private String name;
     private int yearProduction;
+    private EngineCat engineCat;
+
+    @Override
+    public String toString() {
+        return "Engine{" +
+                "id=" + id +
+                ", parts=" + parts +
+                ", name='" + name + '\'' +
+                ", yearProduction=" + yearProduction +
+                ", engineCat=" + engineCat +
+                '}';
+    }
 }

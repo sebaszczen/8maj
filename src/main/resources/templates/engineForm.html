@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="navi :: head">
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Engine_Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
+<div th:include="navi :: menu"></div>
+<datalist id="p">
+    <option th:each = "par : ${partsList}" th:value = "${par.id}"
+            th:label = "${par.name}" ></option>
+</datalist>
+<datalist id="enginecat">
+    <select>
+        <option th:each="cat : ${T(pl.b2bnetwork.domain.EngineCat).values()}" th:value="${cat}"
+                th:text="${cat.name}"></option>
+    </select>
+</datalist>
 
+<h2 class="movieDet">Create new ENGINE:</h2>
+<form th:action="@{/engine/add}" th:object="${engine}" method="post">
+    <br/>
+    <label for="p">Parts list:</label>
+    <input list="p" name="id"/>
+    <br/>
+    <br/>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Engine name:</label>
+            <input type="text" class="form-control" th:field="*{name}" placeholder="engine name"/>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Year production</label>
+            <input type="text" class="form-control" th:field="*{yearProduction}" placeholder="2018"/>
+            <td th:if="${#fields.hasErrors('yearProduction')}" th:errors="*{yearProduction}"></td>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="enginecat">EngineType:</label>
+            <input list="enginecat" class="form-control" th:field="*{engineCat}"/>
+            <td rowspan="6" th:if="${#fields.hasErrors('engineCat')}" th:errors="*{engineCat}"></td>
+            <br/>
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <button type="submit" class="btn-success btn-lg">Submit</button>
+    <button type="reset" class="btn-danger btn-lg">Reset</button>
+</form>
+<br />
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <h2>Sources :)</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/engine.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/engine.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/parts.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/parts.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/car.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/car.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

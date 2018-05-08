@@ -17,7 +17,7 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @GetMapping("findall")
+    @GetMapping("/findall")
     public String findAll(Model model){
         model.addAttribute("cars", carService.findAll());
         return "carsList";
@@ -26,7 +26,7 @@ public class CarController {
     @PostMapping("/add")
     public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "carFom";
+            return "carForm";
         } else {
             carService.save(car);
             model.addAttribute("cars", carService.findAll());

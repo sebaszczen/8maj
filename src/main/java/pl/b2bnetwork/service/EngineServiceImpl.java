@@ -3,7 +3,9 @@ package pl.b2bnetwork.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.b2bnetwork.domain.Engine;
+import pl.b2bnetwork.domain.Part;
 import pl.b2bnetwork.repository.EngineRepository;
+import pl.b2bnetwork.repository.PartRepository;
 
 import java.util.List;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class EngineServiceImpl implements EngineService {
     @Autowired
     private EngineRepository engineRepository;
+    @Autowired
+    private PartRepository partRepository;
 
     @Override
     public List<Engine> findAll() {
@@ -23,7 +27,10 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public void save(Engine engine) {
+    public void save(Engine engine, Long id) {
+        Part part =  partRepository.findOne(id);
+        engineRepository.save(engine);
+        engine.getParts().add(part);
         engineRepository.save(engine);
     }
 

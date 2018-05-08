@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:include="navi :: head">
     <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+    <title>BlueRay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .movieDet {
+            background-color: darkgray;
+            border: 5px black;
+            margin-left: 150px;
+            margin-right: 150px;
+            color: white;
+            padding: 1px;
+            text-align: center;
+        }
 
+    </style>
+</head>
+<body bgcolor="black">
+<div th:include="navi :: menu"></div>
+<h2 class="movieDet"> Parts list:</h2>
+<!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Part Id</th>
+        <th>Name</th>
+        <!--<th>Add part to ENGINE</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="part:${parts}">
+        <td th:text="${part.id}"></td>
+        <td th:text="${part.name}"></td>
+        <!--<td>-->
+            <!--<a th:href="@{/engine/add?id={id}(id=${part.id})}"-->
+               <!--role="button" class="btn btn-success">-->
+                <!--<i class="fa fa-info"></i>-->
+            <!--</a>-->
+
+        <!--</td>-->
+    </tr>
+    </tbody>
+</table>
 </body>
+<div class="container">
+    <h2>Sources :)</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/engine.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/engine.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/parts.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/parts.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail">
+                <a href="https://www.goshico.com/allegro/car.jpg" target="_blank">
+                    <img src="https://www.goshico.com/allegro/car.jpg" alt="Lights" style="width:100%"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 </html>
