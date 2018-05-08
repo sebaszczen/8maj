@@ -12,13 +12,14 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class Part {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String model;
-    private double velocity;
-    @OneToOne
-    @JoinColumn(name = "engine_Id")
+    private String name;
+    private int yearProducion;
+    @ManyToOne
+    @JoinColumn(name = "engine_id")
     private Engine engine;
 }
