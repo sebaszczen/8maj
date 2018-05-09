@@ -29,9 +29,10 @@ public class EngineServiceImpl implements EngineService {
     @Override
     public void save(Engine engine, Long id) {
         Part part =  partRepository.findOne(id);
-        engineRepository.save(engine);
         engine.getParts().add(part);
         engineRepository.save(engine);
+        part.setEngine(engine);
+        partRepository.save(part);
     }
 
     @Override

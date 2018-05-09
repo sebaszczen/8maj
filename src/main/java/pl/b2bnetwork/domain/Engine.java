@@ -6,7 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -21,19 +23,10 @@ public class Engine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "engine")
-    private Set<Part> parts = new HashSet<>();
+    private List<Part> parts = new ArrayList<>();
     private String name;
     private int yearProduction;
     private EngineCat engineCat;
 
-    @Override
-    public String toString() {
-        return "Engine{" +
-                "id=" + id +
-                ", parts=" + parts +
-                ", name='" + name + '\'' +
-                ", yearProduction=" + yearProduction +
-                ", engineCat=" + engineCat +
-                '}';
-    }
+
 }
