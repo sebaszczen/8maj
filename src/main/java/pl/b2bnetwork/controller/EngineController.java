@@ -1,15 +1,19 @@
 package pl.b2bnetwork.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.b2bnetwork.domain.Engine;
+import pl.b2bnetwork.domain.Part;
 import pl.b2bnetwork.repository.PartRepository;
 import pl.b2bnetwork.service.EngineService;
 
+import javax.jws.WebParam;
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/engine")
 @Controller
@@ -28,7 +32,7 @@ public class EngineController {
 
     @PostMapping("/add")
     public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult,
-                            @RequestParam Long id) {
+                            @RequestParam Long[] id) {
         if (bindingResult.hasErrors()) {
             return "engineForm";
         } else {
@@ -57,4 +61,8 @@ public class EngineController {
         model.addAttribute("engines", engineService.findAll());
         return "enginesList";
     }
+//    @PostMapping("/addParts")
+//    public String addParts(Model model, @RequestParam List<Part> parts){
+//        model.addAttribute("")
+//    }
 }

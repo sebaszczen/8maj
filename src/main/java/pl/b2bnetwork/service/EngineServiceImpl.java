@@ -18,7 +18,7 @@ public class EngineServiceImpl implements EngineService {
 
     @Override
     public List<Engine> findAll() {
-        return engineRepository.findAll() ;
+        return engineRepository.findAll();
     }
 
     @Override
@@ -27,12 +27,18 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public void save(Engine engine, Long id) {
-        Part part =  partRepository.findOne(id);
-        engine.getParts().add(part);
+    public void save(Engine engine, Long[] id) {
+
+        for (int i = 0; i < id.length; i++) {
+            Part part = partRepository.getOne(id[i]);
+
+            engine.getParts().add(part);
+
+            part.setEngine(engine);
+//            partRepository.save(part);
+        }
         engineRepository.save(engine);
-        part.setEngine(engine);
-        partRepository.save(part);
+
     }
 
     @Override

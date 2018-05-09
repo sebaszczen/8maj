@@ -7,6 +7,6 @@ import java.util.List;
 public interface EngineService {
     List<Engine> findAll();
     Engine findById(Long id);
-    void save(Engine engine, Long id);
+    void save(Engine engine, Long[] id);
     void delete(Long id);
 }

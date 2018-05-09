@@ -39,8 +39,6 @@
 <h2 class="movieDet">Create new ENGINE:</h2>
 <form th:action="@{/engine/add}" th:object="${engine}" method="post">
     <br/>
-    <label for="p">Parts list:</label>
-    <input list="p" name="id"/>
     <br/>
     <br/>
     <div class="form-row">
@@ -64,6 +62,12 @@
 
     <br />
     <br />
+    <table>
+        <th:block th:each="part: ${partsList}">
+            <input type="checkbox" name="id" th:value="${part.id}"/>
+            <label th:text="${part.name}"></label>
+        </th:block>
+    </table>
     <button type="submit" class="btn-success btn-lg">Submit</button>
     <button type="reset" class="btn-danger btn-lg">Reset</button>
 </form>
