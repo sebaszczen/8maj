@@ -19,17 +19,8 @@ public class Part {
     private Long id;
     private String name;
     private int yearProducion;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "engine_id")
     private Engine engine;
 
-    @Override
-    public String toString() {
-        return "Part{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", yearProducion=" + yearProducion +
-                ", engine=" + engine +
-                '}';
-    }
 }
