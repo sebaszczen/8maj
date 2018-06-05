@@ -24,9 +24,8 @@ public class Engine {
     private Long id;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "engine")
     private List<Part> parts = new ArrayList<>();
-    private String name;
+    public String name;
     private int yearProduction;
     private EngineCat engineCat;
-
 
 }

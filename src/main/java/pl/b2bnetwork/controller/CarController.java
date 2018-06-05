@@ -6,7 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.b2bnetwork.domain.Car;
+import pl.b2bnetwork.repository.EngineRepository;
 import pl.b2bnetwork.service.CarService;
+import pl.b2bnetwork.service.EngineService;
 
 import javax.validation.Valid;
 
@@ -16,6 +18,8 @@ public class CarController {
 
     @Autowired
     private CarService carService;
+    @Autowired
+    private EngineRepository engineRepository;
 
     @GetMapping("/findall")
     public String findAll(Model model){
@@ -37,7 +41,8 @@ public class CarController {
     @GetMapping("/add")
     public String showForm(Model model){
         model.addAttribute("car", new Car());
-        return "carsList";
+        model.addAttribute("engineList",engineRepository.findAll());
+        return "carForm";
     }
 
     @GetMapping("/delcar")

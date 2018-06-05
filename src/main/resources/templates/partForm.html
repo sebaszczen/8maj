@@ -3,10 +3,10 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:include="navi :: head">
+<head th:include="navi">
     <meta charset="UTF-8"/>
     <title>Part_Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -24,7 +24,6 @@
     </style>
 </head>
 <body>
-<div th:include="navi :: menu"></div>
 <h2 class="movieDet">Add new parts:</h2>
 <form th:action="@{/part/add}" th:object="${part}" method="post">
     <div class="form-row">

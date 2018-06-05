@@ -14,7 +14,6 @@
 
 <body>
 <div class="container" th:fragment="menu">
-<div class="container" th:fragment="menu">
     <nav class="navbar navbar-inverse">
         <div class="container-light" style="background-color: #e3f2fd;">
             <div class="navbar-header">
@@ -33,11 +32,16 @@
                         <li><a href="/engine/findall">Engines list</a></li>
                     </ul>
                 </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">CARS<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li> <a href="/car/add">Add car</a></li>
+                        <li><a href="/car/findall">Car list</a></li>
+                    </ul>
+                </li>
             </ul>
 
         </div>
     </nav>
-</div>
 </div>
 </body>
 </html>

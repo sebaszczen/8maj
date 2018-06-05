@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
+
+<datalist>
+    <option th:each = "engine : ${enigneList}" th:value = "${engine.id}"
+            th:label = "${engine.name}" ></option>
+</datalist>
+
+<div th:include="navi">
+</div>
+<h1>Wybierz samochod</h1>
+<form th:action="@{/car/add}" th:object="${car}" method="post">
+    <div>
+        <label>Nazwa</label>
+        <input type="text" th:field="*{model}" placeholder="model"/>
+    </div>
+    <div>
+        <label>Predkosc</label>
+        <input type="text" th:field="*{velocity}" placeholder="velocity"/>
+    </div>
+
+    <table>
+        <th:block th:each="engine: ${engineList}">
+            <input type="checkbox" name="id" th:value="${engine.id}"/>
+            <label th:text="${engine.name}"></label>
+        </th:block>
+    </table>
+    <button type="submit">Submit</button>
+</form>
 
 </body>
 </html>

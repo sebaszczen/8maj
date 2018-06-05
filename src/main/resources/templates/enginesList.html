@@ -43,7 +43,7 @@
         <td th:text="${eng.name}"></td>
         <td th:text="${eng.yearProduction}"></td>
         <td th:text="${eng.engineCat}"></td>
-        <td th:text="${eng.parts.size()}"></td>
+        <td th:text="${eng.parts.get(0).name}"></td>
 
     </tr>
     </tbody>

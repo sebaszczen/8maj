@@ -18,7 +18,6 @@ public class Car {
     private Long id;
     private String model;
     private double velocity;
-    @OneToOne
-    @JoinColumn(name = "engine_Id")
+    @OneToOne(cascade = CascadeType.ALL)
     private Engine engine;
 }
