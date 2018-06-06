@@ -28,11 +28,11 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult){
+    public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult,@RequestParam Long id){
         if(bindingResult.hasErrors()){
             return "carForm";
         } else {
-            carService.save(car);
+            carService.save(car,id);
             model.addAttribute("cars", carService.findAll());
             return "carsList";
         }

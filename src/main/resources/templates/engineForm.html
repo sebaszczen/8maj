@@ -38,30 +38,30 @@
 
 <h2 class="movieDet">Create new ENGINE:</h2>
 <form th:action="@{/engine/add}" th:object="${engine}" method="post">
-    <!--<br/>-->
-    <!--<br/>-->
-    <!--<br/>-->
-    <!--<div class="form-row">-->
-        <!--<div class="form-group col-md-6">-->
-            <!--<label for="inputAddress">Engine name:</label>-->
-            <!--<input type="text" class="form-control" th:field="*{name}" placeholder="engine name"/>-->
-            <!--<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>-->
-        <!--</div>-->
-        <!--<div class="form-group col-md-6">-->
-            <!--<label for="inputPassword4">Year production</label>-->
-            <!--<input type="text" class="form-control" th:field="*{yearProduction}" placeholder="2018"/>-->
-            <!--<td th:if="${#fields.hasErrors('yearProduction')}" th:errors="*{yearProduction}"></td>-->
-        <!--</div>-->
-        <!--<div class="form-group col-md-4">-->
-            <!--<label for="enginecat">EngineType:</label>-->
-            <!--<input list="enginecat" class="form-control" th:field="*{engineCat}"/>-->
-            <!--<td rowspan="6" th:if="${#fields.hasErrors('engineCat')}" th:errors="*{engineCat}"></td>-->
-            <!--<br/>-->
-        <!--</div>-->
-    <!--</div>-->
+    <br/>
+    <br/>
+    <br/>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Engine name:</label>
+            <input type="text" class="form-control" th:field="*{name}" placeholder="engine name"/>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Year production</label>
+            <input type="text" class="form-control" th:field="*{yearProduction}" placeholder="2018"/>
+            <td th:if="${#fields.hasErrors('yearProduction')}" th:errors="*{yearProduction}"></td>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="enginecat">EngineType:</label>
+            <input list="enginecat" class="form-control" th:field="*{engineCat}"/>
+            <td rowspan="6" th:if="${#fields.hasErrors('engineCat')}" th:errors="*{engineCat}"></td>
+            <br/>
+        </div>
+    </div>
 
-    <!--<br />-->
-    <!--<br />-->
+    <br />
+    <br />
     <table>
         <th:block th:each="part: ${partsList}">
             <input type="checkbox" name="id" th:value="${part.id}"/>

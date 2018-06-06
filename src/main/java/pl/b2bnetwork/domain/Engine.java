@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 
-@Data
 @Builder
 @Entity
 @NoArgsConstructor
@@ -27,5 +26,54 @@ public class Engine {
     public String name;
     private int yearProduction;
     private EngineCat engineCat;
+    @OneToOne(mappedBy = "engine")
+    private Car car;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Part> getParts() {
+        return parts;
+    }
+
+    public void setParts(List<Part> parts) {
+        this.parts = parts;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getYearProduction() {
+        return yearProduction;
+    }
+
+    public void setYearProduction(int yearProduction) {
+        this.yearProduction = yearProduction;
+    }
+
+    public EngineCat getEngineCat() {
+        return engineCat;
+    }
+
+    public void setEngineCat(EngineCat engineCat) {
+        this.engineCat = engineCat;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
 }

@@ -7,6 +7,6 @@ import java.util.List;
 public interface CarService {
     List<Car> findAll();
     Car findOne(Long id);
-    void save(Car car);
+    void save(Car car,Long id);
     void delete(Long id);
 }
