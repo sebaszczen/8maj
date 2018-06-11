@@ -18,10 +18,14 @@ public class EngineTest {
         EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("myDatabase");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        TypedQuery<Engine> query = entityManager.createQuery("select e from Engine e where e.name='turbo'", Engine.class);
-        Engine singleResult = query.getSingleResult();
+        TypedQuery<Engine> query = entityManager.createQuery("select e from Engine e", Engine.class);
+        List<Engine> resultList = query.getResultList();
 
-        System.out.println(singleResult.name);
+        for (Engine engine : resultList) {
+            for (Part part : engine.getParts()) {
+                System.out.println(engine.name+" "+engine.getEngineCat()+" part "+part.getName());
+            }
+        }
 
         entityManager.close();
         entityManagerFactory.close();
