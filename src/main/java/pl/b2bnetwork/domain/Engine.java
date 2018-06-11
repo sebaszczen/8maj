@@ -21,12 +21,13 @@ public class Engine {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    public String name;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "engine")
     private List<Part> parts = new ArrayList<>();
-    public String name;
     private int yearProduction;
     private EngineCat engineCat;
-    @OneToOne(mappedBy = "engine")
+    @JoinColumn(name = "car_id")
+    @OneToOne(mappedBy = "engine",cascade = CascadeType.ALL)
     private Car car;
 
     public Long getId() {
