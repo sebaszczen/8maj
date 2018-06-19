@@ -43,7 +43,11 @@
         <td th:text="${eng.name}"></td>
         <td th:text="${eng.yearProduction}"></td>
         <td th:text="${eng.engineCat}"></td>
-        <td th:text="${eng.parts.get(0).name}"></td>
+        <!--<td th:text="${eng.parts.get(0).name}"></td>-->
+
+        <span th:if="${!eng.parts.empty}"><td th:text="${eng.parts.get(0).name}"></td></span>
+        <!--<span th:if="${error != null and error.summary != null}"><span th:text="${error.summary}">error summary</span></span>-->
+
 
     </tr>
     </tbody>

@@ -32,7 +32,6 @@ public class EngineServiceImpl implements EngineService {
         if (id!=null) {
             for (int i = 0; i < id.length; i++) {
                 Part part = partRepository.getOne(id[i]);
-
                 engine.getParts().add(part);
 
                 part.setEngine(engine);
