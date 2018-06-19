@@ -23,6 +23,24 @@ public class PartController {
         return "partsList";
     }
 
+//    @PostMapping("/delete")
+//    public String delete(Model model, @ModelAttribute @Valid Part part, BindingResult bindingResult) {
+//        if (bindingResult.hasErrors()) {
+//            return "partForm";
+//        } else {
+//            partService.delete(part.getId());
+//            model.addAttribute("parts", partService.findAll());
+//            return "partsList";
+//        }
+//    }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, Model model) {
+        partService.delete(id);
+        model.addAttribute("parts", partService.findAll());
+        return "partsList";
+    }
+
     @PostMapping("/add")
     public String addEngine(Model model, @ModelAttribute @Valid Part part, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

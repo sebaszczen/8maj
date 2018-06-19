@@ -32,11 +32,11 @@ public class EngineController {
 
     @PostMapping("/add")
     public String addEngine(Model model, @ModelAttribute @Valid Engine engine, BindingResult bindingResult,
-                            @RequestParam Long[] id) {
+                             @RequestParam(required = false)  Long[] id) {
         if (bindingResult.hasErrors()) {
             return "engineForm";
         } else {
-            engineService.save(engine, id);
+                engineService.save(engine, id);
             model.addAttribute("engines", engineService.findAll());
             return "enginesList";
         }
