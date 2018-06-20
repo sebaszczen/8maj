@@ -31,10 +31,12 @@ public class CarServiceImpl implements CarService {
     @Override
     public void save(Car car, Long id) {
 
-        Engine engine = engineRepository.findOne(id);
+        if (id!=null) {
+            Engine engine = engineRepository.findOne(id);
 
-        car.setEngine(engine);
+            car.setEngine(engine);
             engine.setCar(car);
+        }
 
         carRepository.save(car);
     }

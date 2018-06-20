@@ -46,4 +46,9 @@ public class EngineServiceImpl implements EngineService {
     public void delete(Long id) {
         engineRepository.delete(id);
     }
+
+    @Override
+    public void update(Engine engine) {
+        engineRepository.save(engine);
+    }
 }

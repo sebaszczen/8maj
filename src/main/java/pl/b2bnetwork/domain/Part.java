@@ -18,8 +18,8 @@ public class Part {
     private Long id;
     private String name;
     private int yearProducion;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "engine_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "engine_id",nullable = true)
     private Engine engine;
 
 }

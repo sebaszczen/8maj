@@ -28,7 +28,7 @@ public class CarController {
     }
 
     @PostMapping("/add")
-    public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult,@RequestParam Long id){
+    public String addCar(Model model, @ModelAttribute @Valid Car car, BindingResult bindingResult,@RequestParam(required = false) Long id){
         if(bindingResult.hasErrors()){
             return "carForm";
         } else {

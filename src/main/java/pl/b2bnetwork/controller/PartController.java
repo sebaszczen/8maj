@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.b2bnetwork.domain.Engine;
 import pl.b2bnetwork.domain.Part;
+import pl.b2bnetwork.service.EngineService;
 import pl.b2bnetwork.service.PartService;
 
 import javax.validation.Valid;
@@ -16,6 +18,8 @@ public class PartController {
 
     @Autowired
     private PartService partService;
+    @Autowired
+    private EngineService engineService;
 
     @GetMapping("/findall")
     public String findAll(Model model) {
@@ -41,6 +45,18 @@ public class PartController {
         return "partsList";
     }
 
+    @PostMapping("/update/{id}")
+    public String updatePart(Model model,@ModelAttribute @Valid Part part,BindingResult bindingResult, @PathVariable Long id){
+        if (bindingResult.hasErrors()) {
+            return "partForm";
+        } else {
+            part.setId(id);
+            partService.save(part);
+            model.addAttribute("parts", partService.findAll());
+        }
+        return "partForm";
+    }
+
     @PostMapping("/add")
     public String addEngine(Model model, @ModelAttribute @Valid Part part, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -61,6 +77,8 @@ public class PartController {
     @GetMapping("/delete")
     public String deleteEngine(Model model, @RequestParam Long id) {
         partService.delete(id);
+        Engine engine = partService.findById(id).getEngine();
+        engineService.update(engine);
         model.addAttribute("parts", partService.findAll());
         return "partsList";
     }

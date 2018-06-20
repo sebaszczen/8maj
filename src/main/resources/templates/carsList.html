@@ -24,7 +24,9 @@
             <td th:text="${car.id}"></td>
             <td th:text="${car.model}"></td>
             <td th:text="${car.velocity}"></td>
-            <td th:text="${car.engine.name}"></td>
+            <span th:if="${car.engine != null}"><td th:text="${car.engine.name}"></td></span>
+
+
         </tr>
         </tbody>
     </table>

@@ -9,4 +9,5 @@ public interface EngineService {
     Engine findById(Long id);
     void save(Engine engine, Long[] id);
     void delete(Long id);
+    void update(Engine engine);
 }

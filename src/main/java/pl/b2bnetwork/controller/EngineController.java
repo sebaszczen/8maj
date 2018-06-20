@@ -42,6 +42,17 @@ public class EngineController {
         }
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteEngine(@PathVariable Long id, Model model){
+        Part part = engineService.findById(id).getParts().get(0);
+        partRepository.save(part);
+        engineService.delete(id);
+
+        model.addAttribute("engines",engineService.findAll());
+
+        return "enginesList";
+    }
+
     @GetMapping("/add")
     public String showForm(Model model) {
         model.addAttribute("engine", new Engine());

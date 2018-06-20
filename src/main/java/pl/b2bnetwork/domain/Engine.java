@@ -21,7 +21,7 @@ public class Engine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     public String name;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "engine")
+    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "engine")
     private List<Part> parts = new ArrayList<>();
     private int yearProduction;
     private EngineCat engineCat;

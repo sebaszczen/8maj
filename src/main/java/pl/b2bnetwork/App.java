@@ -37,10 +37,4 @@ public class App {
         }
     }
 
-    @PostConstruct
-    public void runAtStart(){
-        Car car=new Car();
-        car.setModel("blabla");
-        carRepository.save(car);
-    }
 }

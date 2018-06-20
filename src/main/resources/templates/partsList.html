@@ -32,6 +32,7 @@
     <tr>
         <th>Part Id</th>
         <th>Name</th>
+        <th>Engine id</th>
         <!--<th>Add part to ENGINE</th>-->
     </tr>
     </thead>
@@ -39,20 +40,20 @@
     <tr th:each="part:${parts}">
         <td th:text="${part.id}"></td>
         <td th:text="${part.name}"></td>
+        <span th:if="${part.engine!= null}">
+        <td th:text="${part.engine.id}"></td>
+        </span>
         <td>
             <form th:action="@{delete/{id}(id=${part.id})}" th:object="${part}" method="post">
-                <!--<input type="hidden" th:field="${part}">Delete</input>-->
                 <button type="delete" th:field="${part}" class="btn-success btn-lg">Delete</button>
-
             </form>
         </td>
-        <!--<td>-->
-            <!--<a th:href="@{/engine/add?id={id}(id=${part.id})}"-->
-               <!--role="button" class="btn btn-success">-->
-                <!--<i class="fa fa-info"></i>-->
-            <!--</a>-->
+        <td>
+            <form th:action="@{update/{id}(id=${part.id})}" th:object="${part}" method="post">
+                <button type="submit" th:field="${part}">Update</button>
+            </form>
+        </td>
 
-        <!--</td>-->
     </tr>
     </tbody>
 </table>
