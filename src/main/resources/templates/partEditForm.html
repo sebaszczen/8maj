@@ -2,10 +2,11 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:include="navi :: head">
+
+<head th:include="navi">
     <meta charset="UTF-8"/>
-    <title>BlueRay</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Part_Form</title>
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -22,45 +23,28 @@
 
     </style>
 </head>
-<body bgcolor="black">
-<!--<form th:action="@{/part/delete}" th:object="${part}" method="delete">-->
-<div th:include="navi :: menu"></div>
-<h2 class="movieDet"> Parts list:</h2>
-<!--<p>The .table-striped class adds zebra-stripes to a table:</p>-->
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Part Id</th>
-        <th>Name</th>
-        <th>Year production</th>
-        <th>Engine id</th>
-        <!--<th>Add part to ENGINE</th>-->
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="part:${parts}">
-        <td th:text="${part.id}"></td>
-        <td th:text="${part.name}"></td>
-        <td th:text="${part.yearProducion}"></td>
-        <span th:if="${part.engine!= null}">
-        <td th:text="${part.engine.id}"></td>
-        </span>
-        <td>
-            <form th:action="@{delete/{id}(id=${part.id})}" th:object="${part}" method="post">
-                <button type="delete" th:field="${part}" class="btn-success btn-lg">Delete</button>
-            </form>
-        </td>
-        <td>
-            <!--href="/car/add"-->
-            <form th:action="@{/part/update/{id}(id=${part.id})}" method="post">
-                <button type="update">Update</button>
-            </form>
-        </td>
+<body>
+<h2 class="movieDet">Add new parts:</h2>
+<!--href="/car/add"-->
+<form th:action="@{/part/update/{id}(id=${updated})}" th:object="${part}" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Part name:</label>
+            <input type="text" class="form-control" th:field="*{name}" placeholder="part name"/>
+            <!--<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>-->
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Year production</label>
+            <input type="text" class="form-control" th:field="*{yearProducion}" placeholder="2018"/>
+        </div>
+    </div>
 
-    </tr>
-    </tbody>
-</table>
-<!--</form>-->
+    <br />
+    <br />
+    <button type="submit" class="btn-success btn-lg">Submit</button>
+    <button type="reset" class="btn-danger btn-lg">Reset</button>
+</form>
+
 </body>
 <div class="container">
     <h2>Sources :)</h2>

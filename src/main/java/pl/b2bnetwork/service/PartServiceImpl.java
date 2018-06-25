@@ -31,4 +31,17 @@ public class PartServiceImpl implements PartService {
     public void delete(Long id) {
         partRepository.delete(id);
     }
+
+    @Override
+    public void update(Part part, Long id) {
+        Part first = partRepository.findOne(id);
+        if (part.getYearProducion()!=0 ) {
+            first.setYearProducion(part.getYearProducion());
+        }
+        if (!part.getName().equals("")) {
+            first.setName(part.getName());
+        }
+
+        partRepository.save(first);
+    }
 }

@@ -46,15 +46,17 @@ public class PartController {
     }
 
     @PostMapping("/update/{id}")
-    public String updatePart(Model model,@ModelAttribute @Valid Part part,BindingResult bindingResult, @PathVariable Long id){
-        if (bindingResult.hasErrors()) {
-            return "partForm";
+    public String updatePart(Model model,@ModelAttribute @Valid Part part, @PathVariable Long id){
+        Long id1=id;
+        if (part.getName()==null && part.getEngine()==null && part.getYearProducion()==0) {
+            model.addAttribute("updated",id);
+            return "partEditForm";
         } else {
-            part.setId(id);
-            partService.save(part);
+//            part.setId(id);
+            partService.update(part,id1);
             model.addAttribute("parts", partService.findAll());
         }
-        return "partForm";
+        return "partsList";
     }
 
     @PostMapping("/add")

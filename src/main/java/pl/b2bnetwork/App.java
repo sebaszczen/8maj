@@ -17,7 +17,7 @@ import java.sql.Statement;
 public class App {
 
     private static final String URL ="jdbc:mysql://localhost:3306/8thmay";
-    private static final String PASSWORD ="zaq12wsx";
+    private static final String PASSWORD ="tajne";
     private static final String ROOT ="root" ;
 
     @Autowired

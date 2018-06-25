@@ -9,4 +9,5 @@ public interface PartService {
     Part findById(Long id);
     void save(Part part);
     void delete(Long id);
+    void update(Part part,Long id);
 }
